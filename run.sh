@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 set -euo pipefail
 
@@ -8,7 +8,8 @@ export MAKEFLAGS="-j$[$(nproc) + 1]"
 export SRC=/usr/local
 export PKG_CONFIG_PATH=${SRC}/lib/pkgconfig
 
-yum install -y autoconf automake gcc gcc-c++ git libtool make nasm zlib-devel openssl-devel tar cmake perl which bzip2
+apt-get install curl autoconf automake gcc gcc-c++ git libtool make nasm zlib-devel openssl-devel tar cmake perl which bzip2
+# yum install -y autoconf automake gcc gcc-c++ git libtool make nasm zlib-devel openssl-devel tar cmake perl which bzip2
 
 # yasm
 DIR=$(mktemp -d) && cd ${DIR} && \
@@ -157,4 +158,5 @@ DIR=$(mktemp -d) && cd ${DIR} && \
               cp qt-faststart ${SRC}/bin && \
               rm -rf ${DIR}
 
-yum history -y undo last && yum clean all && rm -rf /var/lib/yum/*
+apt-get purge autoconf automake gcc gcc-c++ git libtool make nasm zlib-devel openssl-devel tar cmake perl which bzip2
+# yum history -y undo last && yum clean all && rm -rf /var/lib/yum/*
